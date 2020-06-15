@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.active{
+				background:#FF0000;
+			}
+			.test{font-size: 30px;}
+			
+			.green{color: green;}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			
+			<!-- v-bind:class="{ active : isActive , green : isGreen}" -->
+			<!-- 还可以使用数组 实现为元素绑定样式  还可以使用三元运算来动态实现绑定 -->
+			<div
+			class="test"
+			
+			v-bind:class="[isActive ? 'active' : '', isGreen ? 'green' :'' ] "
+			style="width: 200px;height: 200px;text-align: center;line-height: 200px;">
+				hi vue
+			</div>
+			
+			<!-- v-bind:style="{样式属性:vue实例中的变量}"  -->
+			<div
+			:style="{color:color,fontSize:size,background: isRed ? '#0000FF':''}">
+				hi vue
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			
+			var vm = new Vue({
+				el : "#app",
+				data  :{
+					isActive : true,
+					isGreen : false,
+					color : "red",
+					size : "50px",
+					isRed : true
+					
+				}
+			});
+		</script>
+	</body>
+</html>

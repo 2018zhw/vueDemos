@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.active{
+				background:#FF0000;
+			}
+			.test{font-size: 30px;}
+			
+			.green{color: green;}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!-- v-for 指令基于一个数组来渲染一个列表。v-for 指令需要使用 item in items 形式的特殊语法，
+			其中 items 是源数据数组，而 item 则是被迭代的数组元素的别名。 -->
+			<!-- 在 v-for 块中，我们可以访问所有父作用域的 property。
+			v-for 还支持一个可选的第二个参数，即当前项的索引。 -->
+			<ul>
+				<li v-for="item,index in items" v-bind:key="index">
+					{{parentMessage}}--{{index}}  {{item.message}}
+				</li>
+			</ul>
+			
+			<!-- v-for 来遍历一个对象的 property  也可以提供第二个的参数为 property 名称 (也就是键名);
+			   还可以用第三个参数作为索引
+			-->
+			<ul>
+				<li v-for="(item,key,index) in objects" :key="key">
+					{{index}}.{{key}}:{{item}}
+				</li>
+			</ul>
+			<!-- 为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，
+			你需要为每项提供一个唯一 key attribute,建议尽可能在使用 v-for 时提供 key attribute，
+			因为它是 Vue 识别节点的一个通用机制，key 并不仅与 v-for 特别关联
+			 -->
+		</div>
+		
+		<script type="text/javascript">
+			
+			var vm = new Vue({
+				el : "#app",
+				data  :{
+				    parentMessage: 'Parent',
+					items : [
+						{message : 'foo'},
+						{message : 'Bar'}
+					],
+					objects : {
+						title : "How to do lites in Vue",
+						anthor :"Jane Doe",
+						publishedAt :"2016-04-10"
+					}
+					
+				}
+			});
+		</script>
+	</body>
+</html>

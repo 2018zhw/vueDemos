@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./vue.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			.red {
+				color: red;
+			}
+			.blue {color:blue;font-size: 100px;}
+		</style>
+	</head>
+	<body>
+		<div id="app" v-once>
+			这个值将不会再改变：{{msg}}
+				
+			<p v-html="rawHtml"></p>
+			<span v-bind:class="color">test...</span>
+			<!-- //js表达式 -->
+			<p>{{number + 1}}</p> 
+			<!-- 三元运算 -->
+			<p>{{ok ? "YES":"NO"}}</p>
+			<!-- 函数运算  倒叙排列-->
+			<p>{{ message.split("").reverse().join("")}}</p>
+		</div>
+		
+	
+		
+		<script type="text/javascript">
+			
+			var vm= new Vue({
+				el:"#app",
+				data: {
+					msg : "hi vue",
+					rawHtml : '<span style="color:red">This should be red</span>',
+					color : "blue",
+					number : 10,
+					ok : 1,
+					message : "vue"
+					
+				}
+			});
+			
+			vm.msg = "hi ..."
+		</script>
+	</body>
+</html>

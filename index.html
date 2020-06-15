@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+		<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script> -->
+	</head>
+	<body>
+		<div id="app">
+			{{a}}
+		</div>
+		
+		<script type="text/javascript">
+			var data = {a:1}; //提前声明数据对象，然后加入vue实例中
+			
+			var vm = new Vue({
+				el:"#app", //id选择器
+				data:data //在此处声明注册变量
+			})
+			
+			// console.log(vm.a == data.a);
+		
+			// vm.$data.a = 20;//也是修改data.a
+			// console.log(data.a);
+			// data.b = "hi";
+			// console.log(vm.$data === data); // true
+			
+			// vm.$watch('a',function(newVal,oldVal){ //观察变量的前后变化
+			// 	console.log(oldVal,newVal);
+			// })
+			
+			// vm.a = "....test";
+		</script>
+	</body>
+</html>

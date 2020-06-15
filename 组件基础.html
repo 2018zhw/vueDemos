@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="./vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+		
+			<button-counter title="title1" @clicknow="clickNow">
+				<h2>h2,,,,,</h2>
+				<span>hhh</span>
+			</button-counter>
+			<button-counter title="title2"></button-counter>
+		</div>
+		
+	
+		
+		<script type="text/javascript">
+			
+			//组件是可复用的 Vue 实例，且带有一个名字，使用component定义一个组件 
+			// 因为组件是可复用的 Vue 实例，所以它们与 new Vue 接收相同的选项，
+			// 例如 data、computed、watch、methods 以及生命周期钩子等。
+			// 仅有的例外是像 el 这样根实例特有的选项。
+			Vue.component('button-counter', {
+				
+			// 使用props为组件定义属性,可以在html中使用该属性,在组件的调用时通过该属性为其进行赋值
+			 props : ['title'],
+			// 一个组件的 data 选项必须是一个函数，因此每个实例才可以维护一份被返回对象的独立的拷贝
+			// 组件的数据
+			  data : function(){
+				  
+				  return {
+					  count : 0
+				  }
+			  },
+			  // 组件的模板内容
+			  template:'<div><h1>hi......</h1><button v-on:click="clickFun">{{title}}: Clicked me {{count}}times</button><slot></slot></div>',
+			  
+			  // <slot></slot> 是插槽，这样才可以在组件内部添加自己想加的标签内容
+			  
+			  
+			  methods:{
+				  clickFun : function(){
+					  this.count++;
+					  // 用$emit这个方法可以触发一个事件 $emit(事件名称，可携带的参数)
+					  // 在组件的父级可以通过事件绑定的方式来接收到$emit函数触发的事件
+					  
+					  this.$emit("clicknow",this.count);
+				  }
+			  }
+			})
+			
+			var vm= new Vue({
+				el:"#app",
+				data: {
+			
+					counter : 0,
+					
+				},
+				// 在 `methods` 对象中定义方法
+				methods:{
+					clickNow : function(e){
+						console.log(e);
+					}
+				}
+			});
+			
+	
+		</script>
+	</body>
+</html>

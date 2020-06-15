@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>生命周期</title>
+		<script src="vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			{{msg}}
+		</div>
+		
+		<script type="text/javascript">
+		
+			var vm = new Vue({
+				el:"#app", //id选择器
+				data:{//在此处声明注册变量
+					msg : "hi vue"
+				}, 
+				// 以下是生命周期钩子函数  生命周期钩子的 this 上下文指向调用它的 Vue 实例。
+				// 在实例初始化后被立即调用，数据观测（data observer），watch/event事件配置之前被调用
+				beforeCreate: function(){
+					console.log("breforeCreate");
+				},
+				// 在实例创建完成后被立即调用
+				// 在这一步，实例已完成以下的配置：数据观测（data observer）,属性和方法的运算，watch/event事件的回调
+				// 然而，挂载阶段还没开始，$el属性目前不可见
+				created : function(){
+					console.log("Created" + "---" + this.msg); //this 指向vue实例
+					
+				},
+				
+				//在挂载开始之前被调用，相关的渲染函数首次被调用
+				beforeMount : function(){
+					console.log("beforeMount" + "---" + this.msg);
+				},
+				// el 被新创建的 vm.$el 替换，挂载成功
+				mounted : function(){
+					console.log("mounted");
+				},
+				// 数据更新之前调用
+				beforeUpdate : function(){
+					console.log("beforeUpdate");
+				},
+				
+				// 组件DOM 已将更新，组件更新完毕
+				updated : function(){
+					console.log("updated");
+				},
+			})
+			
+			setTimeout(function(){
+				vm.msg = "changed msg";
+			},3000)
+			
+		</script>
+	</body>
+</html>

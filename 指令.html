@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>指令</title>
+		<script src="./vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			
+			<p v-if="seen">现在可以看到我了</p>
+			<a v-bind:href="url">点我</a>
+		
+			<div @click="click1">
+				<!-- 绑定click事件 正常的如此绑定会先触发click2 再触发click1，若是只想执行click2 可以使用修饰符.stop 表示只执行完click1就结束了 -->
+				<div @click.stop="click2">
+					click me
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var vm = new Vue({
+				el : "#app",
+				data : {
+					seen : false,
+					url:"https://www.baidu.com",
+					
+				},
+				methods:{ //在这里定义绑定的函数
+					click1 : function(){
+						console.log("click1........");
+					},
+					click2 : function(){
+						console.log("click2........");
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

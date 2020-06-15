@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>单文件组件</title>
+		<script src="./vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<button-counter></button-counter>
+			<test></test>
+		</div>
+		<script type="text/javascript">
+			// 组件的全局注册
+			Vue.component('button-counter',{
+				props:['title'],
+				data : function(){
+					
+				},
+				template: '<div><h1>hi......</h1></div>'
+			})
+			
+			
+			var vm = new Vue({
+				el : "#app",
+				data : {
+					
+				},
+				methods:{ //在这里定义绑定的函数
+				
+				},
+				// 组件的局部注册
+				components:{
+					test : {
+							template:"<h2>h2...</h2>",
+							methods:{
+							
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
